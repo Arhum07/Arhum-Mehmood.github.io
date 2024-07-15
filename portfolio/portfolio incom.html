@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 1rem;
+        }
+
+        .navbar-brand a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .navbar-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-links li {
+            margin-left: 1rem;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar-links.active {
+            display: flex;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #333;
+            height: 100vh;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .p{
+color: #eee;
+        }
+
+        #hp {
+            text-align: center;
+            padding: 100px 20px;
+            background: #f7f7f7;
+        }
+
+        .message {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .message .word1, .message .word2, .message .word3 {
+            display: inline;
+            animation: changeWord 9s infinite;
+        }
+
+        @keyframes changeWord {
+            0%, 33% { opacity: 1; }
+            33.1%, 66% { opacity: 0; }
+            66.1%, 100% { opacity: 1; }
+        }
+
+        .word2 { animation-delay: 3s; }
+        .word3 { animation-delay: 6s; }
+
+        #about, #resume, #projects, #contact {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .project {
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+            width: 200px;
+            height: 150px;
+            background: #eee;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project h3, .project p {
+            margin: 0;
+            padding: 10px;
+        }
+
+        .project .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .project:hover .overlay {
+            opacity: 1;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .resume-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .resume-column {
+            width: 30%;
+            display: none;
+        }
+
+        .resume-column.active {
+            display: block;
+        }
+
+        .resume-buttons {
+            margin-bottom: 20px;
+        }
+
+        .resume-buttons button {
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-toggle {
+                display: flex;
+            }
+
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .navbar-links .close-btn {
+                display: block;
+            }
+
+            .navbar-links li {
+                margin: 1rem 0;
+            }
+
+            .resume-container {
+                flex-direction: column;
+            }
+
+            .resume-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="#">My Portfolio</a>
+        </div>
+        <div class="navbar-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="close-btn"><a href="#" id="close-menu"><i class="fas fa-times"></i></a></li>
+        </ul>
+    </nav>
+
+    <div id="hp"> 
+        <h1>
+            <span>Hello I am </span>
+            <br>
+            <div class="message">
+                <div class="word1">Arhum Mehmood</div>
+                <div class="word2">Web Designer</div>
+                <div class="word3">Web Developer</div>
+            </div>
+        </h1>
+        <p>Welcome to my personal portfolio. Here you can find information about my skills, experience, and projects. Feel free to browse around and get in touch if you'd like to work together!</p>
+    </div>
+
+    <div id="ap"></div>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>This is where you can write about yourself, your skills, experiences, and anything else you want visitors to know.</p>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+        <h2>Resume</h2>
+        <div class="resume-buttons">
+            <button onclick="showResumeSection('skills')">Skills</button>
+            <button onclick="showResumeSection('education')">Education</button>
+            <button onclick="showResumeSection('introduction')">Introduction</button>
+            <button onclick="downloadResume()">Download Resume</button>
+        </div>
+        <div class="resume-container">
+            <div id="skills" class="resume-column">
+                <h3>Skills</h3>
+                <p>Add your skills content here.</p>
+            </div>
+            <div id="education" class="resume-column">
+                <h3>Education</h3>
+                <p>Add your education content here.</p>
+            </div>
+            <div id="introduction" class="resume-column active">
+                <h3>Introduction</h3>
+                <p>Add your introduction content here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Project 1</h3>
+            <p>Description of Project 1</p>
+            <div class="overlay">
+                <p>View Details</p>
+            </div>
+        </div>
+        <div class="project">
+            <h3>Project 2</h3>
+            <p>Description of Project 2</p>
+            <div class="overlay">
+                <p>View Details</p>
+            </div>
+        </div>
+        <div class="project">
+            <h3>Project 3</h3>
+            <p>Description of Project 3</p>
+            <div class="overlay">
+                <p>View Details</p>
+            </div>
+        </div>
+        <!-- Add more dummy project blocks as needed -->
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Add your contact information or a contact form here.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Arhum Mehmood. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const navbarLinks = document.querySelector('.navbar-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
+        });
+
+        closeMenu.addEventListener('click', (e) => {
+            e.preventDefault();
+            navbarLinks.classList.remove('active');
+        });
+
+        function showResumeSection(sectionId) {
+            const sections = document.querySelectorAll('.resume-column');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === sectionId) {
+                    section.classList.add('active');
+                }
+            });
+        }
+
+        function downloadResume() {
+            const link = document.createElement('a');
+            link.href = 'resume.pdf';  // Replace 'resume.pdf' with the actual path to your PDF file
+            link.download = 'resume.pdf';
+            link.click();
+        }
+    </script>
+</body>
+</html>
